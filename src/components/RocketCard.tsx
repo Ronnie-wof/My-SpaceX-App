@@ -1,6 +1,10 @@
+// Rocket Card component displayed on home screen
 import React from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Image, Dimensions } from 'react-native'
-import { Launch, Crew } from '../services/models';
+import { StyleSheet, View, Text, TouchableOpacity,  Image, Dimensions, ScrollView } from 'react-native'
+import { Launch } from '../model/models';
+import { fetchLocalDateToUser } from '../service/spacexService';
+import { fetchCrew } from '../service/spacexService';
+import { defaultImageUri } from '../configuration/spacexConfiguration';
 
 const windowWidth = Dimensions.get('screen').width;
 
@@ -9,38 +13,23 @@ interface RocketProps{
     onTap: Function;
  }
 
- export const fetchLocalDateToUser = (unixTimestamp:string) => {
-    const unixTime = Number(unixTimestamp);
-    // Convert Unix timestamp to JavaScript Date object
-    const date = new Date(unixTime * 1000);
-
-    // Get current date and time in local timezone
-    const currentDate = date.toLocaleString();
-    return currentDate
- }
-
- export const fetchCrew = (crew:Crew[]):string => {
-    if (crew.length === 0) {
-        return "No crew";
-    } else {
-        const roles = crew.map(c => c.role);
-        return roles.join(", ");
-    }
- }
-
 const RocketCard: React.FC<RocketProps> = ({ item, onTap }) => {
 const localDate = fetchLocalDateToUser(item.date_unix)
+if(item.links.patch.small==null) {
+    item.links.patch.small=defaultImageUri
+}
 const crew = fetchCrew(item.crew)
 return (
 <TouchableOpacity onPress={() => onTap(item)}>
     <View style = {styles.cardContainer}>
       <Image style= {styles.image} source={{ uri: `${item.links.patch.small}`}} />
-        <View style= {styles.rocketInfo}>
+        <ScrollView style= {styles.rocketInfo}>
             <Text style={styles.rocketName}>{item.name}</Text>
             <Text style={styles.launchDate}>{localDate}</Text>
-            <Text style={styles.crew}>{crew}</Text>
-            <Text style={styles.flightInfo}>Flight Number: {item.flight_number} | Id: {item.id}</Text>
-        </View>
+            <Text style={styles.crew} numberOfLines={1}>{crew}</Text>
+            <Text style={styles.flightInfo}>Flight Number: {item.flight_number} </Text>
+            <Text style={styles.id} numberOfLines={1}>Id: {item.id}</Text>
+        </ScrollView>    
     </View>
 </TouchableOpacity>
 
@@ -49,9 +38,10 @@ return (
 const radius = 20;
 const styles = StyleSheet.create({
     cardContainer: {
+        flexDirection: 'row',
         width: windowWidth - 10,
-        backgroundColor: '#fffacd',
-        height: 290,
+        backgroundColor: 'white',
+        height: 230,
         borderRadius: radius,
         shadowColor: '#000000',
         shadowOffset: {
@@ -65,23 +55,26 @@ const styles = StyleSheet.create({
     image: {
         height:150,
         resizeMode: 'contain',
-        width: windowWidth - 25,
+        width: windowWidth - 10 - 220,
         borderTopLeftRadius: radius,
         borderTopRightRadius: radius,
-        alignContent: 'center',
         alignSelf: 'center',
         shadowOpacity: 0.75,
     },
     rocketInfo: {
-        marginHorizontal: 10,
-        marginVertical: 5
+        resizeMode: 'contain',
+        width: windowWidth - 10 - 200,
+        marginLeft: 4,
+        height:150,
+        alignSelf: 'center',
     },
     rocketName: {
         fontSize:25,
-        fontWeight:'800'
+        fontWeight:'800',
+        marginBottom:2
     },
     launchDate: {
-        fontSize:15,
+        fontSize:17,
         fontWeight: '200',
         fontStyle: 'italic'
     },
@@ -93,11 +86,13 @@ const styles = StyleSheet.create({
     flightInfo: {
         fontWeight: '200',
         fontStyle: 'italic',
-        fontSize: 15
+        fontSize: 15,
     },
-    cardText: {
-
-    }
+    id: {
+        fontWeight: '200',
+        fontStyle: 'italic',
+        fontSize: 15,
+    },
 });
 
  export { RocketCard }

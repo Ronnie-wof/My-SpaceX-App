@@ -1,3 +1,4 @@
+// Error message. Rendered when server is unable to fetch data.
 import React from 'react'
 import {View, StyleSheet, Text} from 'react-native'
 import { Entypo } from '@expo/vector-icons';

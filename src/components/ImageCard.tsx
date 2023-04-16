@@ -1,5 +1,7 @@
+// Image card component. Used for rendering the image on rocket information screen.
 import React, { useState } from 'react'
 import {StyleSheet, View, Dimensions, Image, ActivityIndicator} from "react-native";
+import { defaultImageUri } from '../configuration/spacexConfiguration';
 
 const windowWidth = Dimensions.get('screen').width;
 interface imageProps{
@@ -8,6 +10,9 @@ interface imageProps{
 
 const ImageCard:React.FC<imageProps> = ({uri}) => {
     const [loading, setLoading] = useState(false);
+    if(uri==null) {
+        uri=defaultImageUri
+    }
     return (
         <View style = {styles.cardContainer}>
             <Image source={{ uri: uri}} style={styles.image}
@@ -24,7 +29,7 @@ const radius = 20;
 const styles = StyleSheet.create({
 cardContainer: {
     width: windowWidth - 20,
-    backgroundColor: '#fffacd',
+    backgroundColor: '#faf0e6',
     borderRadius: radius,
     shadowColor: '#000000',
     shadowOffset: {
@@ -37,6 +42,7 @@ cardContainer: {
     marginHorizontal:10
 },
 image: {
+    marginVertical:10,
     height:150,
     width: windowWidth - 25,
     borderTopLeftRadius: radius,
