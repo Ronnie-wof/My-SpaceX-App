@@ -32,7 +32,7 @@ npm install --save react-native-collapsible
 For ref:
 [react-native-picker documentation](https://docs.expo.dev/versions/latest/sdk/picker/)
 
-* Testing [jest-expo](https://docs.expo.dev/guides/testing-with-jest/)
+* Testing using [jest-expo](https://docs.expo.dev/guides/testing-with-jest/)
 ```
 npx expo install jest-expo jest
 npx expo install react-test-renderer@18.2.0
