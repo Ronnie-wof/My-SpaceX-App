@@ -1,4 +1,4 @@
-// the screen which will have the list view of all upcoming launches
+// the screen which will have the view for each individual spaceX launch
 import React, { useEffect, useState } from 'react'
 import {View, Text, StyleSheet, SafeAreaView, ScrollView, Dimensions, Image } from 'react-native'
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack/lib/typescript/src/types';
@@ -6,8 +6,10 @@ import type { RouteProp } from '@react-navigation/native';
 import { RocketDetailStackParam } from '../../App'
 import Accordion from 'react-native-collapsible/Accordion';
 import { AntDesign } from '@expo/vector-icons'; 
-import { fetchCrew, fetchLocalDateToUser } from '../components/RocketCard';
+import { fetchCrew, fetchLocalDateToUser } from '../service/spacexService';
 import ImageCard from '../components/ImageCard';
+import InformationDisplay from '../components/InfomationDisplay';
+import StatusDisplay from '../components/StatusDisplay';
 
 type RocketInfoNavigationProp = NativeStackNavigationProp<
     RocketDetailStackParam,
@@ -28,15 +30,30 @@ type Section = {
 
 const RocketInfoScreen = ({navigation, route}: RocketInfoScreenProps) => {
     useEffect(()=> {
-        navigation.setOptions({title:route.params.rocket.name})
+        navigation.setOptions({title:route.params.rocket.name, headerTitleStyle: {color:'#191970', fontWeight: 'bold'}})
     }, []);
     const item = route.params.rocket;
     
     const localDate = fetchLocalDateToUser(item.date_unix)
     const crew = fetchCrew(item.crew)
-    const reused = item.fairings.reused.toString()
-    const recovery_attempt = item.fairings.recovery_attempt.toString()
-    const recovered = item.fairings.recovered.toString()
+    let reused = null, recovery_attempt = null, recovered = null
+
+    if(item.fairings != null) {
+        if(item.fairings.reused != null) {
+            reused = item.fairings.reused
+        }
+        
+        if(item.fairings.recovery_attempt != null) {
+            recovery_attempt = item.fairings.recovery_attempt
+        }
+    
+        if(item.fairings.recovered != null) {
+            recovered = item.fairings.recovered
+        }
+    }
+    
+    
+    
     let details = item.details;
     if(details==null) {
         details="No details available";
@@ -45,10 +62,17 @@ const RocketInfoScreen = ({navigation, route}: RocketInfoScreenProps) => {
     const sections:Section[] = [
         {
             title: 'Basic Information',
-            content: <><Text style={styles.small}>Rocket Id:{item.id}</Text>
-            <Text style={styles.small}>Launch Date:{localDate}</Text>
-            <Text style={styles.small}>Crew:{crew}</Text>
-            </>
+            content: (
+                <Text>
+                  <>
+                  <View style={{ flexDirection: 'column' }}>
+                    <InformationDisplay label='Rocket Id' value={item.id} />
+                    <InformationDisplay label='Launch Date' value={localDate} />
+                    <InformationDisplay label='Crew' value={crew} />
+                    </View>
+                  </>
+                </Text>
+              )
         },
         {
             title: 'Mission Details',
@@ -57,10 +81,17 @@ const RocketInfoScreen = ({navigation, route}: RocketInfoScreenProps) => {
         },
         {
             title: 'Rocket Status',
-            content: <><Text style={styles.small}>Reused:{reused}</Text>
-            <Text style={styles.small}>Recovery attempt:{recovery_attempt}</Text>
-            <Text style={styles.small}>Recover:{recovered}</Text>
-            </>
+            content: (
+                <Text>
+                    <>
+                    <View style={{ flexDirection: 'column' }}>
+                        <StatusDisplay label="Reused " status={reused}></StatusDisplay>
+                        <StatusDisplay label="Recovery attempt " status={recovery_attempt}></StatusDisplay>
+                        <StatusDisplay label="Recovered " status={recovered}></StatusDisplay>
+                    </View>
+                    </>
+                </Text>
+            )
         },
 
     ];
@@ -69,7 +100,7 @@ const RocketInfoScreen = ({navigation, route}: RocketInfoScreenProps) => {
         return (
             <View style= {styles.accordHeader}>
                 <Text style= {styles.accordTitle}>{section.title}</Text>
-                <AntDesign name={ isActive? "caretup": "caretdown"} size={20} color="#bbb" />
+                <AntDesign name={ isActive? "caretup": "caretdown"} size={20} color="#191970" />
             </View>
         );
     };
@@ -99,23 +130,17 @@ const RocketInfoScreen = ({navigation, route}: RocketInfoScreenProps) => {
     );
 }
 
-const radius = 20;
-const windowWidth = Dimensions.get('screen').width;
-const windowHeight = Dimensions.get('screen').height;
+
 const styles = StyleSheet.create({
     container: {
         flex:1,
-    },
-    text: {
-        color: '#101010',
-        fontSize: 24
     },
     accordContainer: {
         paddingBottom: 8
     },
     accordHeader: {
         padding:12,
-        backgroundColor:'mediumturquoise',
+        backgroundColor:'#add8e6',
         color:'#eee',
         flex: 1,
         flexDirection: 'row',
@@ -123,6 +148,8 @@ const styles = StyleSheet.create({
     },
     accordTitle: {
         fontSize: 20,
+        fontWeight: 'bold',
+        color: '#191970'
     },
     accordBody: {
         padding: 12
@@ -130,16 +157,6 @@ const styles = StyleSheet.create({
     small: {
         fontSize: 18,
         fontStyle: 'italic'
-    },
-    image: {
-        height:windowWidth - 50,
-        width: windowWidth - 25,
-        marginTop: 10,
-        marginBottom: 10,
-        borderTopLeftRadius: radius,
-        borderTopRightRadius: radius,
-        alignContent: 'center',
-        alignSelf: 'center'
     },
 })
 
