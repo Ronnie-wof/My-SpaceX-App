@@ -1,8 +1,5 @@
-// make the API call
+// The model declarations for the response received in the API call
 
-type Launches = {
-    launches: [Launch]
-}
 export type Launch = {
     fairings: Fairings,
     links: Link,
@@ -13,12 +10,12 @@ export type Launch = {
     window: number,
     rocket: string,
     success: boolean,
-    failures: Failure,
+    failures: Failure[],
     details: string,
     crew: Crew[],
-    ships: [string],
-    capsules: [string],
-    payloads: [string],
+    ships: string[],
+    capsules: string[],
+    payloads: string[],
     launchpad: string,
     auto_update: boolean,
     flight_number: number,
@@ -28,7 +25,7 @@ export type Launch = {
     date_local: string,
     date_precision: string,
     upcoming: boolean,
-    cores: Core,
+    cores: Core[],
     id: string
 };
 
@@ -42,7 +39,7 @@ type Link = {
     patch: Patch,
     reddit: Reddit,
     flickr: Flickr,
-    preskit: string,
+    presskit: string | null,
     webcast: string,
     youtube_id: string,
     article: string,
@@ -55,20 +52,20 @@ type Patch = {
 }
 
 type Reddit = {
-    campaign: string,
-    launch: string,
-    media: string,
-    recovery: string
+    campaign: string | null,
+    launch: string | null,
+    media: string | null,
+    recovery: string | null
 }
 
 type Flickr = {
-    small: [string],
-    original: [string]
+    small: string[],
+    original: string[]
 }
 
 type Failure = {
     time: number,
-    altitude: number,
+    altitude: number | null,
     reason: string
 }
 
