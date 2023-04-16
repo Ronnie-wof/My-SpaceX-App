@@ -54,7 +54,7 @@ const HomeScreen = ({navigation, route}:IsHomeScreenProps) => {
             const launches = await getUpcomingLaunches();
             setData(launches)
             setFilteredDataSource(launches)
-            if(data!=null && launches.length>0) {
+            if(launches!=null && launches.length>0) {
                 setLoading(false)
             }
           };
