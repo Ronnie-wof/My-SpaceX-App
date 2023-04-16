@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageCard component renders correctly 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#faf0e6",
+      "borderRadius": 20,
+      "elevation": 9,
+      "marginHorizontal": 10,
+      "marginVertical": 10,
+      "shadowColor": "#000000",
+      "shadowOffset": {
+        "height": 5,
+        "width": 5,
+      },
+      "shadowOpacity": 0.75,
+      "width": 730,
+    }
+  }
+>
+  <Image
+    onLoadEnd={[Function]}
+    onLoadStart={[Function]}
+    resizeMode="contain"
+    source={
+      {
+        "uri": "https://images2.imgbox.com/48/a8/LTqq8OrE_o.png",
+      }
+    }
+    style={
+      {
+        "alignSelf": "center",
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "height": 150,
+        "marginVertical": 10,
+        "width": 725,
+      }
+    }
+  />
+</View>
+`;

@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RocketCard renders correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "opacity": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "white",
+        "borderRadius": 20,
+        "elevation": 9,
+        "flexDirection": "row",
+        "height": 230,
+        "marginTop": 10,
+        "shadowColor": "#000000",
+        "shadowOffset": {
+          "height": 5,
+          "width": 5,
+        },
+        "shadowOpacity": 0.75,
+        "width": 740,
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "uri": "https://images2.imgbox.com/94/f2/NN6Ph45r_o.png",
+        }
+      }
+      style={
+        {
+          "alignSelf": "center",
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "height": 150,
+          "resizeMode": "contain",
+          "shadowOpacity": 0.75,
+          "width": 520,
+        }
+      }
+    />
+    <RCTScrollView
+      style={
+        {
+          "alignSelf": "center",
+          "height": 150,
+          "marginLeft": 4,
+          "resizeMode": "contain",
+          "width": 540,
+        }
+      }
+    >
+      <View>
+        <Text
+          style={
+            {
+              "fontSize": 25,
+              "fontWeight": "800",
+              "marginBottom": 2,
+            }
+          }
+        >
+          FalconSat
+        </Text>
+        <Text
+          style={
+            {
+              "fontSize": 17,
+              "fontStyle": "italic",
+              "fontWeight": "200",
+            }
+          }
+        >
+          3/24/2006, 5:30:00 PM
+        </Text>
+        <Text
+          numberOfLines={1}
+          style={
+            {
+              "fontSize": 15,
+              "fontStyle": "italic",
+              "fontWeight": "200",
+            }
+          }
+        >
+          No crew
+        </Text>
+        <Text
+          style={
+            {
+              "fontSize": 15,
+              "fontStyle": "italic",
+              "fontWeight": "200",
+            }
+          }
+        >
+          Flight Number: 
+          1
+           
+        </Text>
+        <Text
+          numberOfLines={1}
+          style={
+            {
+              "fontSize": 15,
+              "fontStyle": "italic",
+              "fontWeight": "200",
+            }
+          }
+        >
+          Id: 
+          5eb87cd9ffd86e000604b32a
+        </Text>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

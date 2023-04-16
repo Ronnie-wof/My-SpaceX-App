@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InformationDisplay component renders correctly 1`] = `
+<View
+  style={
+    {
+      "flexDirection": "row",
+      "marginBottom": 5,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "fontSize": 18,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Name
+    : 
+  </Text>
+  <View
+    style={
+      {
+        "width": 600,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 18,
+          "fontStyle": "italic",
+        }
+      }
+    >
+      Ronnie
+    </Text>
+  </View>
+</View>
+`;
