@@ -140,7 +140,9 @@ const styles = StyleSheet.create({
     },
     accordHeader: {
         padding:12,
-        backgroundColor:'#add8e6',
+        backgroundColor:'white',
+        borderWidth:1,
+        borderColor: '#191970',
         color:'#eee',
         flex: 1,
         flexDirection: 'row',

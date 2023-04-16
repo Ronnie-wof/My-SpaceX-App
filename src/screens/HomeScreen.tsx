@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
     },
     button: {
-      backgroundColor: "#0000cd",
+      backgroundColor: "#191970",
       padding: 10,
       borderRadius: 8,
       color: "white"

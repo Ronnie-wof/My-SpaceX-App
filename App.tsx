@@ -16,7 +16,7 @@ export default function App() {
   return (
       <NavigationContainer>
           <Stack.Navigator initialRouteName="Home" screenOptions={()=>({
-            headerStyle: {backgroundColor: '#87ceeb'}, headerTitleStyle: {color: '#191970', fontWeight: 'bold'} , title: 'SpaceX - Launches'
+            headerStyle: {backgroundColor: 'white'}, headerTitleStyle: {color: '#191970', fontWeight: 'bold'} , title: 'SpaceX - Launches'
           })}>
             <Stack.Screen name ="Home" component={HomeScreen}/>
             <Stack.Screen name="RocketInfo" component={RocketInfoScreen}/>
