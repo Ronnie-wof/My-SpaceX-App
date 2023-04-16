@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+// About me section with name, phone and email address
+import React, { useState, useEffect } from 'react'
 import {Text, StyleSheet, View, Image, ScrollView, ActivityIndicator} from "react-native";
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack/lib/typescript/src/types';
 import { RocketDetailStackParam } from '../../App'
@@ -21,8 +22,11 @@ interface AboutMeScreenProps {
 }
 
 const AboutMeScreen = ({navigation, route}:AboutMeScreenProps) => {
+  useEffect(()=> {
+    navigation.setOptions({title:'My first react native app!', headerTitleStyle: {color:'#191970', fontWeight: 'bold'}})
+}, []);
     const [loading, setLoading] = useState(false);
-
+    
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.container}>
@@ -55,11 +59,6 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#fff",
-    },
-    ImageContainer: {
-      marginHorizontal: 16,
-      marginTop: 30,
-      width: "100%",
     },
     Image: {
       shadowColor: "black",
