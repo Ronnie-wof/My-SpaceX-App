@@ -180,7 +180,7 @@ const HomeScreen = ({navigation, route}:IsHomeScreenProps) => {
         <View style={styles.tabContainer}>
           
             <Searchbar style={styles.search}
-                placeholder="Type here..."
+                placeholder="Search..."
                 onChangeText={searchFilterFunction}
                 value={search}
             />
