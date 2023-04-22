@@ -67,7 +67,6 @@ exports[`RocketCard renders correctly 1`] = `
           "borderTopRightRadius": 20,
           "height": 150,
           "resizeMode": "contain",
-          "shadowOpacity": 0.75,
           "width": 520,
         }
       }
