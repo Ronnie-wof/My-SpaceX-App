@@ -177,7 +177,7 @@ const HomeScreen = ({navigation, route}:IsHomeScreenProps) => {
     return (
         <SafeAreaView style={styles.container}>
             {isLoading ? (<ActivityIndicator color="green" size="large"/>) : (
-        <View style={styles.container}>
+        <View style={styles.tabContainer}>
           
             <Searchbar style={styles.search}
                 placeholder="Type here..."
@@ -214,6 +214,7 @@ const HomeScreen = ({navigation, route}:IsHomeScreenProps) => {
                      data={filteredDataSource}
                      renderItem ={({ item }: { item: Launch }) =>  <RocketCard item={item} onTap={(item: Launch) => onTapRocket({navigation, item})} /> } 
                      keyExtractor={(item) => `${item.id}`}
+                    
                     /> 
             </View>)}
         </SafeAreaView>         
@@ -226,6 +227,10 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor: '#dcdcdc',
         alignItems: 'center'
+    },
+    tabContainer: {
+        backgroundColor: '#dcdcdc',
+        marginBottom:1
     },
     filter: {
         flexDirection: 'row',
