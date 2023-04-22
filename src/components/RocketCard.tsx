@@ -58,8 +58,7 @@ const styles = StyleSheet.create({
         width: windowWidth - 10 - 220,
         borderTopLeftRadius: radius,
         borderTopRightRadius: radius,
-        alignSelf: 'center',
-        shadowOpacity: 0.75,
+        alignSelf: 'center'
     },
     rocketInfo: {
         resizeMode: 'contain',
