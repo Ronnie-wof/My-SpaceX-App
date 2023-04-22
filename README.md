@@ -28,6 +28,7 @@ npx expo install react-native-safe-area-context
 npm install react-native-elements
 npx expo install @react-native-picker/picker  
 npm install --save react-native-collapsible
+npm i react-native-paper
 ```
 For ref:
 [react-native-picker documentation](https://docs.expo.dev/versions/latest/sdk/picker/)
