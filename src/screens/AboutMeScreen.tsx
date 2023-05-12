@@ -44,7 +44,7 @@ const AboutMeScreen = ({navigation, route}:AboutMeScreenProps) => {
             <Text style={styles.name}>Sharoni Roy Chowdhury</Text>
             <View style={styles.phone}>
                 <Feather name="phone" size={25} color="#bbb" />
-                <Text style={styles.phoneNumber}>(878)999-6043</Text>
+                <Text style={styles.phoneNumber}>(975)1233358</Text>
             </View>
             <View style={styles.email}>
                 <MaterialIcons name="email" size={24} color="black" />
